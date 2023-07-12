@@ -7,29 +7,70 @@ public class Movement : MonoBehaviour
 {
     public float xSpeed;
     public float ySpeed;
-    void Start()
-    {
-        
-    }
 
-    
+    public bool isMovingLeft;
+    public bool isMovingRight;
+    public bool isMovingUp;
+    public bool isMovingDown;
+
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (isMovingRight)
         {
             transform.position += new Vector3(xSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (isMovingLeft)
         {
             transform.position += new Vector3(-xSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.W))
+        if (isMovingUp)
         {
             transform.position += new Vector3(0, ySpeed, 0);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (isMovingDown)
         {
             transform.position += new Vector3(0, -ySpeed, 0);
         }
     }
+
+    public void TriggerLeft(bool canMove)
+    {
+        isMovingLeft = canMove;
+    }
+
+    public void TriggerRight(bool canMove)
+    {
+        isMovingRight = canMove;
+    }
+
+    public void TriggerUp(bool canMove)
+    {
+        isMovingUp = canMove;
+    }
+
+    public void TriggerDown(bool canMove)
+    {
+        isMovingDown = canMove;
+    }
+
+    /*public void moveUp()
+    {
+        transform.position += new Vector3(0, ySpeed, 0);
+    }
+
+    public void moveDown()
+    {
+        transform.position += new Vector3(0, -ySpeed, 0);
+    }
+
+    public void moveRight()
+    {
+        transform.position += new Vector3(xSpeed, 0, 0);
+    }
+
+    public void moveLeft()
+    {
+        transform.position += new Vector3(-xSpeed, 0, 0);
+    }*/
 }
