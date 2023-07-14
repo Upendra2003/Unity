@@ -8,18 +8,23 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed=2000f;
     public float sideSpeed = 500f;
 
-    void FixedUpdate()
+    void Update()
     {
         rigidBody.AddForce(0, 0, playerSpeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey("d"))
         {
-            rigidBody.AddForce(sideSpeed, 0, 0);
+            rigidBody.AddForce(sideSpeed*Time.deltaTime, 0, 0,ForceMode.VelocityChange);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey("a"))
         {
-            rigidBody.AddForce(-sideSpeed, 0, 0);
+            rigidBody.AddForce(-sideSpeed*Time.deltaTime, 0, 0,ForceMode.VelocityChange);
+        }
+
+        if(rigidBody.position.y < -1f)
+        {
+            FindObjectOfType<GameManager>().EndGame();
         }
 
     }
